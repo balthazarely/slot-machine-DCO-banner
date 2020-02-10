@@ -52,11 +52,6 @@ lights.staggerTo(".lights", 0.1, { opacity: 1, delay: 0.75 }, 0.1)
 	.to(".lights, #header-blink", 0.2, { opacity: 1 }, "+=.2")
 	.to(".lights, #header-blink", 0.2, { opacity: 0 }, "+=.5");
 
-// Repreating Button Shimmer
-let shinnyLine = new TimelineMax({ repeat: -1 });
-shinnyLine.to("#final-btn-shinny", 2, { x: 250, ease: Power2.easeInOut }, "-=0.5")
-	.to("#final-btn-shinny", 4, {});
-
 // Create Divs
 createDivLoop("scroller-1", "./logos/MTV.jpg", "./logos/NBC.jpg", "./logos/VH1.jpg", "./logos/ABC.jpg", "./logos/Disney.jpg", "./logos/ESPN.jpg", "./logos/History.jpg");
 createDivLoop("scroller-2", "./logos/ABC.jpg", "./logos/History.jpg", "./logos/Disney.jpg", "./logos/NBC.jpg", "./logos/VH1.jpg", "./logos/MTV.jpg", "./logos/ESPN.jpg");
@@ -92,22 +87,26 @@ function animate() {
 	let tl = new TimelineMax({});
 	if (digit === 0) {
 		tl.to("#scroller-1", 2, { y: -800, delay: 0.2, ease: "power4.inOut" })
-			.to("#scroller-2", 2, { y: -1050, ease: "power4.inOut" }, "-=1.7")
+			.to("#scroller-2", 2, { y: -1048, ease: "power4.inOut" }, "-=1.7")
 			.to("#scroller-3", 2, { y: -1052, ease: "power4.inOut" }, "-=1.7")
 			.to("#header-winner", .5, { scale: 1, ease: "elastic.out(1, 0.4)" }, "-=.1");
 	} else if (digit === 1) {
-		tl.to("#scroller-1", 2, { y: -20, delay: 0.2, ease: "power4.inOut" })
-			.to("#scroller-2", 2, { y: -33, ease: "power4.inOut" }, "-=1.7")
-			.to("#scroller-3", 2, { y: -55, ease: "power4.inOut" }, "-=1.7")
+		tl.to("#scroller-1", 2, { y: -1000, delay: 0.2, ease: "power4.inOut" })
+			.to("#scroller-2", 2, { y: -1248, ease: "power4.inOut" }, "-=1.7")
+			.to("#scroller-3", 2, { y: -1252, ease: "power4.inOut" }, "-=1.7")
 			.to("#header-winner", .5, { scale: 1, ease: "elastic.out(1, 0.4)" }, "-=.1");
 	} else if (digit === 2) {
 		tl.to("#scroller-1", 2, { y: -1300, delay: 0.2, ease: "power4.inOut" })
-			.to("#scroller-2", 2, { y: -1500, ease: "power4.inOut" }, "-=1.7")
+			.to("#scroller-2", 2, { y: -1498, ease: "power4.inOut" }, "-=1.7")
 			.to("#scroller-3", 2, { y: -1350, ease: "power4.inOut" }, "-=1.7")
 			.to("#header-winner", .5, { scale: 1, ease: "elastic.out(1, 0.4)" }, "-=.1");
 	}
 	tl.to("#scroller-1, #scroller-2, #scroller-3", 2, { y: 1000, ease: "power4.inOut" }, "+=0.65");
 
+	// Repreating Button Shimmer/
+	let shinnyLine = new TimelineMax({ repeat: -1 });
+	shinnyLine.to("#final-btn-shinny", 2, { x: 250, ease: Power2.easeInOut }, "-=0.5")
+		.to("#final-btn-shinny", 4, {});
 
 	// Animation After Play Button Clicked
 	let lightsSpinning = new TimelineMax({});
@@ -128,6 +127,8 @@ function animate() {
 		.to("#slot-main-wrapper", 1, { scale: 0, rotation: 45, ease: "power4.inOut" })
 		.to("#header-winner", 1, { scale: 0, ease: "power4.inOut" }, "-=1")
 		.staggerTo(".bottom-elements", 0.7, { scale: 1, y: 20, ease: "power4.inOut" }, 0.1, "-=.5")
-		.to("#final-btn-wrapper", 1, { scale: 1, ease: Back.easeOut.config(1.7) }, "-=0.5");
-	;
+		.to("#final-btn-wrapper", 1, { scale: 1, ease: Back.easeOut.config(1.7) }, "-=0.5")
+		.staggerTo(".bottom-elements", 0.5, { scale: 1.1, ease: "power4.inOut" }, 0.1, "+=1")
+		.staggerTo(".bottom-elements", 0.5, { scale: 1, ease: "power4.inOut" }, 0.1, "-=.5");
 }
+
