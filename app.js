@@ -37,9 +37,13 @@ function createDivLoop(targetDivID, image1, image2, image3, image4, image5, imag
 // Start Animation
 let start = new TimelineMax({});
 start.from("#slot-main-wrapper", 1, { scale: 0, rotation: 45, delay: .3, ease: Back.easeOut.config(1.7) })
-	.staggerFrom(".top-elements", 1, { scale: 0, ease: Back.easeOut.config(2) }, 0.2, "-=1")
+	.staggerFrom(".top-elements, #sling-logo", 1, { scale: 0, ease: Back.easeOut.config(2) }, 0.2, "-=1")
 	.from("#background", 1, { opacity: 0, ease: Back.easeInOut.config(1.7) }, "-=1.35");
 
+// Logo Animation
+let logoBlink = new TimelineMax({ repeat: -1, repeatDelay: 5, delay: 1 });
+logoBlink.staggerTo(".icon", 0.3, { scale: 0, transformOrigin: "50% 50%" }, 0.1, "+=0.5")
+	.staggerTo(".icon", 0.3, { scale: 1, ease: Back.easeOut.config(3.5), transformOrigin: "50% 50%" }, 0.1, "-=0.5");
 
 // Blink Lights Animation
 let lights = new TimelineMax({ repeat: -1 });
@@ -58,13 +62,22 @@ createDivLoop("scroller-2", "./logos/ABC.jpg", "./logos/History.jpg", "./logos/D
 createDivLoop("scroller-3", "./logos/ESPN.jpg", "./logos/VH1.jpg", "./logos/ABC.jpg", "./logos/MTV.jpg", "./logos/Disney.jpg", "./logos/History.jpg", "./logos/NBC.jpg");
 
 // Event Listener / Calling sequence function
-document.getElementById("play-btn").addEventListener("click", animate);
+document.getElementById("container").addEventListener("click", function () {
+	if (!animationRunning) {
+		animate();
+	}
+});
+let animationRunning = false;
+
+
 
 // Animation Sequence
 function animate() {
+	animationRunning = true;
 	let close = new TimelineMax({});
 	close.to("#slot-wrapper, #light-container, #light-container-2, #spinner-container", 1, { scale: 1.2, ease: Back.easeOut.config(1.7) })
-		.to("#header", .5, { scale: 0 }, "-=0.5");
+		.to("#header", .5, { scale: 0 }, "-=0.5")
+		.to("#sling-logo", .5, { scale: 0 }, "-=0.35");
 
 	// Remove button
 	(function buttonDisapear() {
@@ -88,17 +101,17 @@ function animate() {
 	if (digit === 0) {
 		tl.to("#scroller-1", 2, { y: -800, delay: 0.2, ease: "power4.inOut" })
 			.to("#scroller-2", 2, { y: -1048, ease: "power4.inOut" }, "-=1.7")
-			.to("#scroller-3", 2, { y: -1052, ease: "power4.inOut" }, "-=1.7")
+			.to("#scroller-3", 2, { y: -1049, ease: "power4.inOut" }, "-=1.7")
 			.to("#header-winner", .5, { scale: 1, ease: "elastic.out(1, 0.4)" }, "-=.1");
 	} else if (digit === 1) {
 		tl.to("#scroller-1", 2, { y: -1000, delay: 0.2, ease: "power4.inOut" })
 			.to("#scroller-2", 2, { y: -1248, ease: "power4.inOut" }, "-=1.7")
-			.to("#scroller-3", 2, { y: -1252, ease: "power4.inOut" }, "-=1.7")
+			.to("#scroller-3", 2, { y: -1249, ease: "power4.inOut" }, "-=1.7")
 			.to("#header-winner", .5, { scale: 1, ease: "elastic.out(1, 0.4)" }, "-=.1");
 	} else if (digit === 2) {
 		tl.to("#scroller-1", 2, { y: -1300, delay: 0.2, ease: "power4.inOut" })
 			.to("#scroller-2", 2, { y: -1498, ease: "power4.inOut" }, "-=1.7")
-			.to("#scroller-3", 2, { y: -1350, ease: "power4.inOut" }, "-=1.7")
+			.to("#scroller-3", 2, { y: -1347, ease: "power4.inOut" }, "-=1.7")
 			.to("#header-winner", .5, { scale: 1, ease: "elastic.out(1, 0.4)" }, "-=.1");
 	}
 	tl.to("#scroller-1, #scroller-2, #scroller-3", 2, { y: 1000, ease: "power4.inOut" }, "+=0.65");
@@ -128,6 +141,7 @@ function animate() {
 		.to("#header-winner", 1, { scale: 0, ease: "power4.inOut" }, "-=1")
 		.staggerTo(".bottom-elements", 0.7, { scale: 1, y: 20, ease: "power4.inOut" }, 0.1, "-=.5")
 		.to("#final-btn-wrapper", 1, { scale: 1, ease: Back.easeOut.config(1.7) }, "-=0.5")
+		.to("#sling-logo", 1, { scale: 1, ease: Back.easeOut.config(1.7) }, "-=1")
 		.staggerTo(".bottom-elements", 0.5, { scale: 1.1, ease: "power4.inOut" }, 0.1, "+=1")
 		.staggerTo(".bottom-elements", 0.5, { scale: 1, ease: "power4.inOut" }, 0.1, "-=.5");
 }

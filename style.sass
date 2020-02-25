@@ -2,6 +2,37 @@ body
     margin: 0
     padding: 0
 
+#container
+    width: 300px
+    height: 600px
+    &:hover
+        cursor: pointer
+        #play-btn
+            transform: scale(1.1)
+        #final-btn-container
+            transform: scale(1.1)
+    &:active
+        #play-btn
+            transform: scale(1.2)
+            color: #D01631
+        #final-btn-container
+            transform: scale(1.2)
+        #final-btn
+            color: #D01631
+
+#blackborder
+    border: 1px solid black
+    z-index: 5000
+
+#sling-logo
+    position: absolute
+    top: 3px
+    left: 150px
+    transform: translate(-50%)
+    width: 100px
+    height: 100px
+    z-index: 200
+
 #play-btn-container
     position: absolute
     justify-content: center
@@ -26,11 +57,6 @@ body
     color: black
     border-radius: 12px
     transition-duration: .3s
-    &:hover
-        transform: scale(1.1)
-    &:active
-        transform: scale(1.2)
-        color: white
 
 #background
     position: absolute
@@ -141,12 +167,12 @@ body
     height: 30px
     border-radius: 12px
     transition-duration: .3s
-    &:hover
-        transform: scale(1.1)
-    &:active
-        transform: scale(1.2)
-        #final-btn
-            color: white
+    // &:hover
+    //     transform: scale(1.1)
+    // &:active
+    //     transform: scale(1.2)
+    //     #final-btn
+    //         color: #D01631
 
 #final-btn
     position: absolute
@@ -168,6 +194,7 @@ body
     height: 30px
     z-index: 70
     clip-path: inset(0 0 0 0 )
+    -webkit-clip-path: inset(0 0 0 0 )
 
 #final-btn-shinny
     width: 6px
@@ -245,7 +272,7 @@ body
 #scroller-3
     position: absolute
     left: 156px
-    top: 1px
+    top: -2px
     // background: red
 
 .Div-0
